@@ -19,7 +19,7 @@
 
 
 
-.container {
+.form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,4 +45,8 @@
     font-weight: bold;
     background-color: crimson;
     border-radius: 5px;
+}
+
+.submitBtn:hover {
+    background-color: #badfb9;
 }
