@@ -26,7 +26,7 @@ function Header() {
     return(
         <header className={styles.header}>
 
-            <h2 className={styles.heading}>Outdoorsy</h2>
+            <h1 className={styles.heading}>Outdoorsy</h1>
 
         </header>
     );
