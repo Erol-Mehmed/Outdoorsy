@@ -20,12 +20,29 @@
 
 
 .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     grid-area: searchField;
     width: 100%;
-    background-color: antiquewhite;
 }
 
 .searchField {
-    
+    width: 70%;
+    height: 10vh;
+    font-size: 20px;
+    border-radius: 5px;
+    margin-top: 30px;
 }
 
+.submitBtn {
+    margin-top: 5px;
+    height: 5vh;
+    width: 100px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: crimson;
+    border-radius: 5px;
+}
