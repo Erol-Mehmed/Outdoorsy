@@ -26,10 +26,6 @@
     justify-self: center;
     grid-area: main;
     margin-top: 50px;
-    min-width: 70%;
-    width: auto;
-    background-color: rgb(234, 231, 231);
-    padding: 50px;
 }
 
 .img {
@@ -50,4 +46,9 @@
     align-self: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1.2rem;
+}
+
+.noMatch {
+    font-weight: bold;
+    font-size: 2rem;
 }

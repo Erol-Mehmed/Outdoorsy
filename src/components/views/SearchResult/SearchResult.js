@@ -19,22 +19,24 @@
 
 
 
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { UserDataContext } from '../../../App';
-import usePromise from 'react-use-promise';
 import styles from './SearchResult.module.css';
 
 function ResultRows() {
     const { result } = useContext(UserDataContext);
-    const resultHtml = [];
+    const rowsArr = [];
     let i = 0;
-    console.log(result);
 
     if (result !== undefined) {
 
+        if (result.length === 0) {
+            return <p className={styles.noMatch}>No match for your search</p>;
+        }
+
         for (let obj of result) {
 
-            resultHtml.push(
+            rowsArr.push(
                 <div className={styles.row} key={i++}>
                     <img className={styles.img} src={`${obj.imageUrl}`} />
                     <p className={styles.name}>
@@ -44,7 +46,7 @@ function ResultRows() {
             );
         }
 
-        return resultHtml;
+        return rowsArr;
     }
 }
 

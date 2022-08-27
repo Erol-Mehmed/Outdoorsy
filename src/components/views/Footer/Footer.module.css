@@ -1,0 +1,27 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer {
+    grid-area: footer;
+    background-color: #0f6f0d;
+    margin-top: 50px;
+    height: 10vh;
+}

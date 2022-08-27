@@ -19,6 +19,7 @@
 
 
 
+import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import SearchField from '../SearchField/SearchField';
 import SearchResult from '../SearchResult/SearchResult';
@@ -30,6 +31,7 @@ function Home() {
             <Header />
             <SearchField />
             <SearchResult />
+            <Footer />
         </div>
     );
 };

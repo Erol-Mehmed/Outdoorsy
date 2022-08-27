@@ -21,7 +21,6 @@
 
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import usePromise from 'react-use-promise';
 import { api } from '../../../api/api';
 import { UserDataContext } from '../../../App';
 import styles from './SearchField.module.css';
@@ -34,22 +33,21 @@ function SearchField() {
     const onSubmit = async data => {
         const curKeyword = data.keyword;
         const test = await api(`filter[keywords]=${curKeyword}&page[limit]=8&page[offset]=8`);
-        
+
         for (let dataObj of test.data) {
             const curImgId = dataObj.relationships.primary_image.data.id;
             const name = dataObj.attributes.name;
 
             for (let includedObj of test.included) {
                 if (includedObj.id === curImgId) {
-                   const imageUrl = includedObj.attributes.url;
+                    const imageUrl = includedObj.attributes.url;
 
-                    resultArr.push({name: name, imageUrl: imageUrl});
+                    resultArr.push({ name: name, imageUrl: imageUrl });
                 }
             }
 
         }
 
-        // console.log(resultArr);
         setResult(resultArr);
         return resultArr;
 
