@@ -19,48 +19,49 @@
 
 
 
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import usePromise from 'react-use-promise';
+import { api } from '../../../api/api';
+import { UserDataContext } from '../../../App';
 import styles from './SearchField.module.css';
 
 function SearchField() {
+    const { setResult } = useContext(UserDataContext);
+    const resultArr = [];
+
     const { register, handleSubmit } = useForm();
     const onSubmit = async data => {
-        const host = "https://search.outdoorsy.com/rentals?";
-        const url = data.keywords;
-        console.log(data.keywords);
+        const curKeyword = data.keyword;
+        console.log(curKeyword);
+        const test = await api(`filter[keywords]=${curKeyword}&page[limit]=8&page[offset]=8`);
+        console.log(test);
 
-        const options = {
-            method: "GET"
-        }
+        for (let dataObj of test.data) {
+            const curImgId = dataObj.relationships.primary_image.data.id;
+            const name = dataObj.attributes.name;
 
-        try {
-            const response = await fetch(host + url, options);
+            for (let includedObj of test.included) {
+                if (includedObj.id === curImgId) {
+                   const imageUrl = includedObj.attributes.url;
 
-            if (response.ok !== true) {
-                if (response.status === 403) localStorage.removeItem("user");
-                const error = await response.json();
-                throw new Error(error.message);
+                    resultArr.push({[name]: imageUrl});
+                }
             }
 
-            if (response.status == 204) {
-                return response;
-            } else {
-                const test = await response.json();
-                console.log(test.data[1].attributes.name);
-                return response.json();
-            }
-
-        } catch (error) {
-            alert(error);
         }
 
+        console.log(resultArr);
+        setResult(resultArr);
+        return resultArr;
 
     }
+
 
     return (
 
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-            <input name='keywords' {...register('keywords')} className={styles.searchField} placeholder='Enter keyword to find vehicle' required />
+            <input name='keyword' {...register('keyword')} className={styles.searchField} placeholder='Enter keyword to find vehicle' required />
             <button className={styles.submitBtn} type='submit'>Submit</button>
         </form>
 
