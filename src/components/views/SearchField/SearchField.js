@@ -33,10 +33,8 @@ function SearchField() {
     const { register, handleSubmit } = useForm();
     const onSubmit = async data => {
         const curKeyword = data.keyword;
-        console.log(curKeyword);
         const test = await api(`filter[keywords]=${curKeyword}&page[limit]=8&page[offset]=8`);
-        console.log(test);
-
+        
         for (let dataObj of test.data) {
             const curImgId = dataObj.relationships.primary_image.data.id;
             const name = dataObj.attributes.name;
@@ -45,13 +43,13 @@ function SearchField() {
                 if (includedObj.id === curImgId) {
                    const imageUrl = includedObj.attributes.url;
 
-                    resultArr.push({[name]: imageUrl});
+                    resultArr.push({name: name, imageUrl: imageUrl});
                 }
             }
 
         }
 
-        console.log(resultArr);
+        // console.log(resultArr);
         setResult(resultArr);
         return resultArr;
 

@@ -19,3 +19,35 @@
 
 
 
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    grid-area: main;
+    margin-top: 50px;
+    min-width: 70%;
+    width: auto;
+    background-color: rgb(234, 231, 231);
+    padding: 50px;
+}
+
+.img {
+    width: 250px;
+    height: 27vh;
+    margin-right: 20px;
+    border-radius: 10px;
+    border: solid 2px black;
+}
+
+.row {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.name {
+    align-self: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.2rem;
+}
