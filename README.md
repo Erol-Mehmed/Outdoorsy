@@ -1,6 +1,9 @@
 ### How to run the project
 
-npm start - To start the application.
+1. Get the files
+2. Install the dependancies
+3. npm start - To start the application.
+4. Make sure you are sending requests from an USA IP.
 
 ### Dependancies
 
