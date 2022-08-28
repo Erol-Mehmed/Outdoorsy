@@ -26,3 +26,7 @@ I have used React.js and JavaScript.
 To use the search functionality of the app you must send the request from USA location.
 This can be done via VPN.
 
+### If I had a whole week to work on this:
+
+If I had a whole week I would have made a registration and login functionalities so that the user can save his favorite search results.
+I would have made a second view in which you can see your favorites in the form of a catalog. 
