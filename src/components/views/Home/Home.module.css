@@ -1,34 +1,13 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .home {
-    display: grid;
-    grid-template-areas: 
-        "header"
-        "searchField"
-        "main"
-        "footer";
-    grid-template-rows: 15vh 20vh auto 10vh;
-    width: 100%;
-    min-height: 100vh;
-    height: auto;
-    background-color: #fffbf4;
+  display: grid;
+  grid-template-areas:
+    "header"
+    "searchField"
+    "main"
+    "footer";
+  grid-template-rows: 15vh 20vh auto 10vh;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  background-color: #fffbf4;
 }

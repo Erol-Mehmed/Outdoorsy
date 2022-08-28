@@ -1,32 +1,18 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .header {
-    display: flex;
-    grid-area: header;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: #0f6f0d;
+  display: flex;
+  flex-direction: column;
+  grid-area: header;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #0f6f0d;
 }
 
 .heading {
-   color: white; 
+  color: white;
+  margin-bottom: 0;
+}
+
+.secondHeading {
+  margin-top: 0;
 }
