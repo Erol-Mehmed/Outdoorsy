@@ -21,7 +21,7 @@
 I have created the project with npx create-react-app my-app.
 I have used React.js and JavaScript.
 
-### Important
+### Note
 
 To use the search functionality of the app you must send the request from USA location.
 This can be done via VPN.
