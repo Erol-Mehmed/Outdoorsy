@@ -26,7 +26,6 @@ function SearchField() {
       }
     }
     setResult(resultArr);
-    return resultArr;
   };
 
   return (
