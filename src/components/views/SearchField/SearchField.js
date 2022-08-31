@@ -14,6 +14,8 @@ function SearchField() {
       `filter[keywords]=${curKeyword}&page[limit]=8&page[offset]=8`
     );
 
+    console.log(responseObject);
+
     for (let dataObj of responseObject.data) {
       const curImgId = dataObj.relationships.primary_image.data.id;
       const name = dataObj.attributes.name;

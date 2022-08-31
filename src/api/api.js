@@ -12,12 +12,8 @@ export const api = async (url) => {
       const error = await response.json();
       throw new Error(error.message);
     }
+    return response.json();
 
-    if (response.status == 204) {
-      return response;
-    } else {
-      return response.json();
-    }
   } catch (error) {
     throw error;
   }
