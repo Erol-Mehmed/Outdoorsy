@@ -9,7 +9,6 @@ export const api = async (url) => {
     const response = await fetch(host + url, options);
 
     if (response.ok !== true) {
-      if (response.status === 403) localStorage.removeItem("user");
       const error = await response.json();
       throw new Error(error.message);
     }
