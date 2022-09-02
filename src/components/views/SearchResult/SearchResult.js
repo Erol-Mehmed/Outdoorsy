@@ -3,18 +3,18 @@ import { UserDataContext } from "../../../App";
 import styles from "./SearchResult.module.css";
 
 function ResultRows() {
-  const { result } = useContext(UserDataContext);
+  const { resultEdit } = useContext(UserDataContext);
   const rowsArr = [];
   let i = 0;
 
-  if (result !== undefined) {
-    if (result.length === 0) {
+  if (resultEdit !== undefined) {
+    if (resultEdit.length === 0) {
       return <p className={styles.noMatch}>No match for your search</p>;
     }
 
-    console.log(result);
+    // console.log(resultEdit);
 
-    for (let obj of result) {
+    for (let obj of resultEdit) {
       rowsArr.push(
         <div className={styles.row} key={i++}>
           <img className={styles.img} src={`${obj.imageUrl}`} />

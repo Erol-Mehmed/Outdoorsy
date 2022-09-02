@@ -38,7 +38,7 @@
 
 .minMaxDiv {
   display: flex;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .priceDiapason {
@@ -46,7 +46,13 @@
   font-weight: bold;
 }
 
-.minMaxInput {
+.minInput, .maxInput {
   height: 3vh;
   align-self: center;
+  border: 1.5px solid black;
+  border-radius: 2px;
+}
+
+.minInput {
+  margin-right: 10px;
 }

@@ -26,7 +26,7 @@ import { UserDataContext } from "../../../App";
 import styles from "./SearchField.module.css";
 
 function SearchField() {
-  const { setResult } = useContext(UserDataContext);
+  const { resultReference, setResultReference, resultEdit, setResultEdit } = useContext(UserDataContext);
   const resultArr = [];
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
@@ -54,28 +54,47 @@ function SearchField() {
       }
     }
     console.log(resultArr);
-    setResult(resultArr);
 
-    const handleChange = event => {
-      let min;
-      let max;
+    setResultReference(resultArr);
+    setResultEdit(resultArr);
 
-      resultArr.forEach((obj, i) => {
+  };
+
+  const handleChange = event => {
+
+    const filterResult = () => {
+      console.log(min, max);
+
+      resultEdit.forEach((obj, i) => {
         if (min !== undefined && obj.price < min && max === undefined) {
-          resultArr.splice(i, 1);
+          resultEdit.splice(i, 1);
         } else if (min === undefined && obj.price > max && max !== undefined) {
-          resultArr.splice(i, 1);
+          resultEdit.splice(i, 1);
         } else if (min !== undefined && max !== undefined && (obj.price < min || obj.price > max)) {
-          resultArr.splice(i, 1);
+          resultEdit.splice(i, 1);
         }
       });
 
-
-
-      setResult(resultArr);
+      setResultEdit(resultEdit);
     }
 
-  };
+    
+    console.log(event.target.value, event.target.name);
+    console.log(resultEdit);
+    const minOrMax = event.target.name;
+    const minOrMaxValue = event.target.value;
+
+    if (minOrMax === 'min' && minOrMaxValue > 0) {
+      min = minOrMaxValue;
+      filterResult();
+    } else if (minOrMax === 'max' && minOrMaxValue > 0) {
+      max = minOrMaxValue;
+      filterResult();
+    } else {
+      setResultEdit(resultReference);
+    }
+
+  }
 
   return (
 
@@ -99,18 +118,15 @@ function SearchField() {
 
         <p className={styles.priceDiapason}>Price Diapason:</p>
 
-      <input className={styles.minMaxInput} name="rangeMin"
-        {...register("rangeMin")}
-        placeholder="Enter the min price"
-        onChange={2} />
+        <input className={styles.minInput} name="min"
+          placeholder="Enter the min price"
+          onChange={handleChange} />
 
-      <input className={styles.minMaxInput} name="rangeMax"
-        {...register("rangeMax")}
-        placeholder="Enter the max price"
-        onChange={2} />
+        <input className={styles.maxInput} name="max"
+          placeholder="Enter the max price"
+          onChange={handleChange} />
 
       </div>
-
     </div>
 
   );
