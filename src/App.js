@@ -7,7 +7,7 @@ export const UserDataContext = createContext();
 function App() {
   const [result, setResult] = useState();
   return (
-    <UserDataContext.Provider value={{ result, setResult }}>
+    <UserDataContext.Provider value={{ result, setResult}}>
       <Home />
     </UserDataContext.Provider>
   );

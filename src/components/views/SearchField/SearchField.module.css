@@ -29,3 +29,24 @@
 .submitBtn:hover {
   background-color: #badfb9;
 }
+
+.searchMinMax {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.minMaxDiv {
+  display: flex;
+  margin-top: 20px;
+}
+
+.priceDiapason {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.minMaxInput {
+  height: 3vh;
+  align-self: center;
+}

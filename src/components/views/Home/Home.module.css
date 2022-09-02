@@ -5,7 +5,7 @@
     "searchField"
     "main"
     "footer";
-  grid-template-rows: 15vh 20vh auto 10vh;
+  grid-template-rows: 20vh 20vh auto 10vh;
   width: 100%;
   min-height: 100vh;
   height: auto;
