@@ -57,7 +57,7 @@ function SearchField() {
 
     setResultReference(resultArr);
     setResultEdit(resultArr);
-
+    setRange({ min: 0, max: 0 });
   };
 
   const handleChange = event => {
@@ -69,24 +69,34 @@ function SearchField() {
         [event.target.name]: Number(event.target.value)
       }
     })
-
   }
 
   useEffect(() => {
+    if (
+      range.min > 0 && range.max > 0 && range.min > range.max
+      ||
+      range.min < 0
+      ||
+      range.max < 0
+      ||
+      isNaN(range.min)
+      ||
+      isNaN(range.max)
+    ) {
+      return;
+    }
+
     setResultEdit(resultEdit.filter(obj => {
-     if (obj.price >= range.min && range.max === 0) {
-      return obj;
-     } else if (obj.price <= range.max && range.min === 0) {
+      if (obj.price >= range.min && range.max === 0) {
         return obj;
-     } else if (obj.price >= range.min && obj.price <= range.max && range.min > 0 && range.max > 0) {
-      return obj;
-     }
-      
+      } else if (obj.price <= range.max && range.min === 0) {
+        return obj;
+      } else if (obj.price >= range.min && obj.price <= range.max && range.min > 0 && range.max > 0) {
+        return obj;
+      }
     }));
 
   }, [range.min, range.max]);
-
-  console.log(range, resultEdit, resultReference);
 
   return (
 
@@ -106,17 +116,25 @@ function SearchField() {
 
       </form>
 
-      <div className={styles.minMaxDiv}>
+      <div className={styles.diapasonDiv}>
 
         <p className={styles.priceDiapason}>Price Diapason:</p>
 
-        <input className={styles.minInput} name="min"
-          placeholder="Enter the min price"
-          onChange={handleChange} />
+        <div className={styles.inputFields}>
+          <input className={styles.minInput} name="min"
+            placeholder="Enter the min price"
+            onChange={handleChange} />
 
-        <input className={styles.maxInput} name="max"
-          placeholder="Enter the max price"
-          onChange={handleChange} />
+          <input className={styles.maxInput} name="max"
+            placeholder="Enter the max price"
+            onChange={handleChange} />
+        </div>
+
+        {range.min < 0 || range.max < 0 || range.min >= range.max && range.max > 0 ?
+          <p className={styles.wrongDiapason}>Wrong diapason parameters!</p>
+          :
+          ''
+        }
 
       </div>
     </div>
