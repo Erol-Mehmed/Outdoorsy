@@ -5,9 +5,10 @@ import Home from "./components/views/Home/Home";
 export const UserDataContext = createContext();
 
 function App() {
-  const [resultReference, setResultReference] = useState();
-  const [resultEdit, setResultEdit] = useState();
-  const [range, setRange] = useState({min: '', max: ''});
+  const [resultReference, setResultReference] = useState([]);
+  const [resultEdit, setResultEdit] = useState([]);
+  const [range, setRange] = useState({ min: 0, max: 0 });
+
   return (
     <UserDataContext.Provider value={{ resultReference, setResultReference, resultEdit, setResultEdit, range, setRange }}>
       <Home />

@@ -19,14 +19,14 @@
 
 
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { api } from "../../../api/api";
 import { UserDataContext } from "../../../App";
 import styles from "./SearchField.module.css";
 
 function SearchField() {
-  const { resultReference, setResultReference, resultEdit, setResultEdit } = useContext(UserDataContext);
+  const { resultReference, setResultReference, resultEdit, setResultEdit, range, setRange } = useContext(UserDataContext);
   const resultArr = [];
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
@@ -53,7 +53,7 @@ function SearchField() {
         }
       }
     }
-    console.log(resultArr);
+    // console.log(resultArr);
 
     setResultReference(resultArr);
     setResultEdit(resultArr);
@@ -61,40 +61,32 @@ function SearchField() {
   };
 
   const handleChange = event => {
+    setResultEdit(resultReference);
 
-    const filterResult = () => {
-      console.log(min, max);
-
-      resultEdit.forEach((obj, i) => {
-        if (min !== undefined && obj.price < min && max === undefined) {
-          resultEdit.splice(i, 1);
-        } else if (min === undefined && obj.price > max && max !== undefined) {
-          resultEdit.splice(i, 1);
-        } else if (min !== undefined && max !== undefined && (obj.price < min || obj.price > max)) {
-          resultEdit.splice(i, 1);
-        }
-      });
-
-      setResultEdit(resultEdit);
-    }
-
-    
-    console.log(event.target.value, event.target.name);
-    console.log(resultEdit);
-    const minOrMax = event.target.name;
-    const minOrMaxValue = event.target.value;
-
-    if (minOrMax === 'min' && minOrMaxValue > 0) {
-      min = minOrMaxValue;
-      filterResult();
-    } else if (minOrMax === 'max' && minOrMaxValue > 0) {
-      max = minOrMaxValue;
-      filterResult();
-    } else {
-      setResultEdit(resultReference);
-    }
+    setRange((prevState) => {
+      return {
+        ...prevState,
+        [event.target.name]: Number(event.target.value)
+      }
+    })
 
   }
+
+  useEffect(() => {
+    setResultEdit(resultEdit.filter(obj => {
+     if (obj.price >= range.min && range.max === 0) {
+      return obj;
+     } else if (obj.price <= range.max && range.min === 0) {
+        return obj;
+     } else if (obj.price >= range.min && obj.price <= range.max && range.min > 0 && range.max > 0) {
+      return obj;
+     }
+      
+    }));
+
+  }, [range.min, range.max]);
+
+  console.log(range, resultEdit, resultReference);
 
   return (
 
