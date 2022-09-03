@@ -29,9 +29,14 @@ function ResultRows() {
 }
 
 function SearchResult() {
+  const { resultEdit, resultCount, setResultCount } = useContext(UserDataContext);
+
+  console.log(resultEdit, resultCount);
+
   return (
     <div className={styles.main}>
       <ResultRows />
+      <button onClick={() => { setResultCount(resultCount + 8) }}>next page</button>
     </div>
   );
 }

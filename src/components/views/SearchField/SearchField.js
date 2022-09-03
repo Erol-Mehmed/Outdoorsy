@@ -26,16 +26,26 @@ import { UserDataContext } from "../../../App";
 import styles from "./SearchField.module.css";
 
 function SearchField() {
-  const { resultReference, setResultReference, resultEdit, setResultEdit, range, setRange } = useContext(UserDataContext);
+  const { resultReference, setResultReference,
+    resultEdit, setResultEdit,
+    range, setRange, resultCount, setResultCount, data, setData } = useContext(UserDataContext);
+
   const resultArr = [];
   const { register, handleSubmit } = useForm();
+
+  useEffect(() => {
+    onSubmit(data);
+  }, [resultCount]);
+
+  console.log(resultCount);
+  
   const onSubmit = async (data) => {
-
     const curKeyword = data.keyword;
+    setData(data);
     const responseObject = await api(
-      `filter[keywords]=${curKeyword}&page[limit]=8&page[offset]=8`
-    );
-
+      `filter[keywords]=${curKeyword}&page[limit]=8&page[offset]=${resultCount}`
+      );
+      
     for (let dataObj of responseObject.data) {
       const curImgId = dataObj.relationships.primary_image.data.id;
       const name = dataObj.attributes.name;
@@ -53,8 +63,7 @@ function SearchField() {
         }
       }
     }
-    // console.log(resultArr);
-
+    
     setResultReference(resultArr);
     setResultEdit(resultArr);
     setRange({ min: 0, max: 0 });
@@ -110,7 +119,7 @@ function SearchField() {
           placeholder="Enter keywords to find vehicle"
           required
         />
-        <button className={styles.submitBtn} type="submit">
+        <button className={styles.submitBtn} onClick={() => {setResultCount(0)}} type="submit">
           Submit
         </button>
 
