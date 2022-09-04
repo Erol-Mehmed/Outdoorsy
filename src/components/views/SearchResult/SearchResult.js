@@ -1,3 +1,24 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import { useContext } from "react";
 import { UserDataContext } from "../../../App";
 import styles from "./SearchResult.module.css";
@@ -11,8 +32,6 @@ function ResultRows() {
     return <p className={styles.noMatch}>No match for your search</p>;
   }
 
-  // console.log(resultEdit);
-
   for (let obj of resultEdit) {
     rowsArr.push(
       <div className={styles.row} key={i++}>
@@ -20,7 +39,7 @@ function ResultRows() {
         <div className={styles.info}>
           <p className={styles.name}>{obj.name}</p>
           <p>Vehicle Type: {obj.vehicleType}</p>
-          <p>Price(USD): {obj.price}</p>
+          <p>Price: {obj.price}$</p>
         </div>
       </div>
     );
@@ -29,14 +48,17 @@ function ResultRows() {
 }
 
 function SearchResult() {
-  const { resultEdit, resultCount, setResultCount } = useContext(UserDataContext);
-
-  console.log(resultEdit, resultCount);
+  const { resultEdit, limit, setLimit } = useContext(UserDataContext);
 
   return (
     <div className={styles.main}>
       <ResultRows />
-      <button onClick={() => { setResultCount(resultCount + 8) }}>next page</button>
+      {
+        resultEdit.length > 0 ?
+          <button onClick={() => { setLimit(limit + 8) }}>Show More</button>
+          :
+          ''
+      }
     </div>
   );
 }

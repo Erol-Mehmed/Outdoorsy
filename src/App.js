@@ -8,15 +8,17 @@ function App() {
   const [resultReference, setResultReference] = useState([]);
   const [resultEdit, setResultEdit] = useState([]);
   const [range, setRange] = useState({ min: 0, max: 0 });
-  const [resultCount, setResultCount] = useState(0);
+  const [limit, setLimit] = useState(8);
   const [data, setData] = useState('');
+
+  console.log(limit);
+
 
   return (
     <UserDataContext.Provider value={{
       resultReference, setResultReference,
       resultEdit, setResultEdit, range, setRange,
-      resultCount, setResultCount,
-      data, setData
+      limit, setLimit, data, setData
     }}>
       <Home />
     </UserDataContext.Provider>
