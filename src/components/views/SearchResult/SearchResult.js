@@ -1,24 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import { useContext } from "react";
 import { UserDataContext } from "../../../App";
 import styles from "./SearchResult.module.css";
@@ -53,12 +32,18 @@ function SearchResult() {
   return (
     <div className={styles.main}>
       <ResultRows />
-      {
-        resultEdit.length > 0 ?
-          <button onClick={() => { setLimit(limit + 8) }}>Show More</button>
-          :
-          ''
-      }
+      {resultEdit.length > 0 ? (
+        <button
+          className={styles.showMoreBtn}
+          onClick={() => {
+            setLimit(limit + 8);
+          }}
+        >
+          Show More
+        </button>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

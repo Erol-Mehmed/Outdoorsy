@@ -34,3 +34,19 @@
   font-size: 1.8rem;
   margin-top: 0;
 }
+
+.showMoreBtn {
+  margin-top: 50px;
+  background-color: rgb(59, 214, 59);
+  width: 150px;
+  height: 5vh;
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: 1rem;
+  align-self: center;
+  cursor: pointer;
+}
+
+.showMoreBtn:hover {
+  background-color: lightgray;
+}
