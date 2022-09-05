@@ -17,8 +17,8 @@ function ResultRows() {
         <img className={styles.img} src={`${obj.imageUrl}`} />
         <div className={styles.info}>
           <p className={styles.name}>{obj.name}</p>
-          <p>Vehicle Type: {obj.vehicleType}</p>
-          <p>Price: {obj.price}$</p>
+          <p className={styles.vehicleType}>Vehicle Type: {obj.vehicleType}</p>
+          <p className={styles.price}>Price: {obj.price}$</p>
         </div>
       </div>
     );

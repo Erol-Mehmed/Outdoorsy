@@ -50,3 +50,8 @@
 .showMoreBtn:hover {
   background-color: lightgray;
 }
+
+.vehicleType, .price {
+  color: rgb(97, 101, 102);
+  font-weight: bold;
+}
