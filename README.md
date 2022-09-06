@@ -4,6 +4,7 @@
 2. npm install - To install the dependancies.
 3. npm start - To start the application.
 4. Make sure you are sending requests from an USA IP using VPN.
+5. Screen resolution: 1280x720
 
 ### Dependancies:
 
